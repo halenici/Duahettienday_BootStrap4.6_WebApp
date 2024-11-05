@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cell.classList.add('cell');
 
         cell.innerHTML = `
-            <div class="playerName">Player ${playerId}</div>
+            <span contentEditable= "true" class="playerName" spellcheck= "false" >Player ${playerId}</span>
             <div class="controls">
                 <div class="pointInc">+</div>
                 <div class="points">0</div>
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add event listener to the button for adding new players
     document.getElementById('addPlayerButton').addEventListener('click', () => {
-        if (playerCount >= 6) {
+        if (playerCount >= 4) {
             alert("Player capacity full");
             return;
         }
