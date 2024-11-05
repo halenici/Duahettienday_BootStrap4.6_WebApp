@@ -1,14 +1,12 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     let playerCount = 2; // Start with 2 players
 
+    let totalSum = 0;
+
     // Function to create a new player cell
     const createPlayerCell = (playerId) => {
-        const col = document.createElement('div');
-        col.classList.add('container-sm', 'mb-3','d-inline-flex'); // Bootstrap classes for responsive design
-
         const cell = document.createElement('div');
-        cell.classList.add('container-fluid','cell', 'text-center'); // Added text-center for centering content
+        cell.classList.add('cell');
 
         cell.innerHTML = `
             <div class="playerName">Player ${playerId}</div>
@@ -23,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pointInc = cell.querySelector('.pointInc');
         const pointDec = cell.querySelector('.pointDec');
         const pointsDisplay = cell.querySelector('.points');
-        
+
         let playerPoint = 0; // Points for this player
 
         const updatePointsDisplay = () => {
@@ -32,18 +30,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         pointInc.addEventListener('click', () => {
             playerPoint++;
+            trackTotal(1);
             updatePointsDisplay();
         });
 
         pointDec.addEventListener('click', () => {
-            if (playerPoint > 0) {
                 playerPoint--;
+                trackTotal(-1);
                 updatePointsDisplay();
-            }
         });
 
-        col.appendChild(cell); // Append the cell to the column
-        return col; // Return the column
+        return cell; // Return the cell
     };
 
     // Function to initialize players
@@ -54,13 +51,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+
+    // Function to keep total score 
+    function trackTotal(n){
+        if (n > 0 ){
+            totalSum -= n; 
+        }
+        if (n < 0){
+            totalSum -=n;
+        }
+
+        if (totalSum == 0 ) {
+            const cells = document.getElementsByClassName("controls")
+            for (var i = 0; i < cells.length; i++){
+                cells[i].classList.remove("hotcell");
+            }
+        }
+        else{
+            const cells = document.getElementsByClassName("controls")
+            for (var i = 0; i < cells.length; i++){
+                cells[i].classList.add("hotcell");
+            }    
+        }
+    }
     // Initialize players on load
     initializePlayers();
 
     // Add event listener to the button for adding new players
     document.getElementById('addPlayerButton').addEventListener('click', () => {
-        if(playerCount > 6) {
-            alert("Player at full capacity");
+        if (playerCount >= 6) {
+            alert("Player capacity full");
             return;
         }
         playerCount++;

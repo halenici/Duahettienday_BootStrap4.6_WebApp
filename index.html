@@ -5,79 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player Tracker</title>
-    <link rel="stylesheet" href="/style/home.css">
-    <style>
-       /* General body styles */
-body {
-    background-color: rgba(9, 6, 6, 1);
-    color: rgba(94, 91, 91, 1);
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-}
-
-/* Container for the overall layout */
-.container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    align-items: center;
-}
-
-/* Player container styles */
-.player-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px; /* Space between cells */
-    width: 100%;
-    max-width: 1000; /* Limit max width */
-}
-
-/* Individual player cell styles */
-.cell {
-    flex-grow: 1;
-    max-width: 200px; /* Limit max width of each cell */
+    <link rel="stylesheet" href="public/style/home.css">
     
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    text-align: center;
-}
-
-/* Controls styles */
-.controls {
-    background-color: rgba(18, 17, 17, 1);
-    border-radius: 28px;
-    font-size: 2em;
-    font-weight: 50;
-    height: 260px;
-    color: rgba(94, 91, 91, 1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%; /* Full width for controls */
-}
-
-/* Button styles */
-button {
-    padding: 10px 20px;
-    background-color: transparent;
-    border: 2px solid #333;
-    border-radius: 5px;
-    color: #333;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-button:hover {
-    background-color: #333;
-    color: white;
-}
-
-    </style>
 </head>
 <body>
     <div class="container">
@@ -85,75 +14,6 @@ button:hover {
         <div class="player-container" id="playerContainer"></div>
         <button id="addPlayerButton">Add New Player</button>
     </div>
-
-    <script>
-       document.addEventListener('DOMContentLoaded', () => {
-    let playerCount = 2; // Start with 2 players
-
-    // Function to create a new player cell
-    const createPlayerCell = (playerId) => {
-        const cell = document.createElement('div');
-        cell.classList.add('cell');
-
-        cell.innerHTML = `
-            <div class="playerName">Player ${playerId}</div>
-            <div class="controls">
-                <div class="pointInc">+</div>
-                <div class="points">0</div>
-                <div class="pointDec">-</div>
-            </div>
-        `;
-
-        // Adding event listeners for the new player's controls
-        const pointInc = cell.querySelector('.pointInc');
-        const pointDec = cell.querySelector('.pointDec');
-        const pointsDisplay = cell.querySelector('.points');
-
-        let playerPoint = 0; // Points for this player
-
-        const updatePointsDisplay = () => {
-            pointsDisplay.textContent = playerPoint;
-        };
-
-        pointInc.addEventListener('click', () => {
-            playerPoint++;
-            updatePointsDisplay();
-        });
-
-        pointDec.addEventListener('click', () => {
-            if (playerPoint > 0) {
-                playerPoint--;
-                updatePointsDisplay();
-            }
-        });
-
-        return cell; // Return the cell
-    };
-
-    // Function to initialize players
-    const initializePlayers = () => {
-        for (let i = 1; i <= playerCount; i++) {
-            const newPlayerCell = createPlayerCell(i);
-            document.getElementById('playerContainer').appendChild(newPlayerCell);
-        }
-    };
-
-    // Initialize players on load
-    initializePlayers();
-
-    // Add event listener to the button for adding new players
-    document.getElementById('addPlayerButton').addEventListener('click', () => {
-        if (playerCount >= 6) {
-            alert("Player capacity full");
-            return;
-        }
-        playerCount++;
-        
-        const newPlayerCell = createPlayerCell(playerCount);
-        document.getElementById('playerContainer').appendChild(newPlayerCell);
-    });
-});
-
-    </script>
+    <script src="public/js/script.js"></script>
 </body>
 </html>
