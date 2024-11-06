@@ -89,3 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('playerContainer').appendChild(newPlayerCell);
     });
 });
+
+
+
+

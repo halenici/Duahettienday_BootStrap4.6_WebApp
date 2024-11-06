@@ -8,15 +8,30 @@
     margin: 0;
     transition: ease-in-out 100ms;
     padding: 20px;
+    display: flex;
 }
 
+.ctnFeatures{
+    width: 10%;
+    margin-left: 20px;
+    /* border : red solid 2px; */
+    
+    display: flex;
+    flex-direction: column;
+    
+}
 
+.feature{
+    /* border: red solid 2px; */
+    margin-bottom: 20px;
+}
 /* Container for the overall layout */
 .container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: auto;
     align-items: center;
+    width: 90%;
 }
 
 /* Player container styles */
@@ -75,14 +90,8 @@ button {
     cursor: pointer;
     margin-top: 5px;
 
-    transition:  ease-in 50ms;
+    transition:  ease-in 200ms;
 }
-
-button:hover {
-    background-color: #333;
-    
-}
-
 
 .hotcell{
     border: white solid 2px;
@@ -98,3 +107,10 @@ button:hover {
     }
   }
 
+@media (min-width: 933px) {
+
+    button:hover {
+        background-color: #333;
+        color: white;
+    }
+}
